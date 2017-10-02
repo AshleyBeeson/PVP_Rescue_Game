@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114786142483530732}
   - component: {fileID: 23393781438540590}
   - component: {fileID: 33209668453308876}
+  - component: {fileID: 114493785470958358}
   m_Layer: 0
   m_Name: TileMap
   m_TagString: Untagged
@@ -56,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ee848159acda46d4ab3a2de5b9649508, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,6 +97,17 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 0}
+--- !u!114 &114493785470958358
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1844588140344976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af09ae63b58976a44aa383039fa5cdd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114786142483530732
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -107,3 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed1cec244fc410f4e88a4ec2c9a31e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sizeX: 100
+  sizeZ: 50
+  tileSize: 1

@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshCollider))]
 public class TileMap : MonoBehaviour {
 	
-	int sizeX = 100;
-	int sizeZ = 50;
-	float tileSize = 1.0f;
+	public int sizeX = 100;
+	public int sizeZ = 50;
+	public float tileSize = 1.0f;
 
 	// Use this for initialization
 	void Start () {
 		BuildMesh();
 	}
 	
-	void BuildMesh(){
+	public void BuildMesh(){
 
 		int numTiles = sizeX * sizeZ;
 		int numTris = numTiles * 2;
@@ -32,8 +33,25 @@ public class TileMap : MonoBehaviour {
 
 		int x,z;
 		for(z = 0; z < sizeZ; z++){
-			for(x = 0; x <sizeX; x++){
-				vertices[z * vSizeX + x] = new Vector3(x * tileSize,0,z * tileSize);
+			for(x = 0; x < sizeX; x++){
+				vertices[z * vSizeX + x] = new Vector3(x * tileSize,Random.Range(-1.0f , 1.0f),z * tileSize);
+				normals[z * vSizeX + x] = Vector3.up;
+				uv[z * vSizeX + x] = new Vector2((float)x/vSizeX,(float)z/vSizeZ);
+			}
+		}
+
+		for(z = 0; z < sizeZ; z++){
+			for(x = 0; x < sizeX; x++){
+				int squareIndex = z * sizeX + x;
+				int triOffset = squareIndex * 6;
+				triangles[triOffset + 0] = z * vSizeX + x + 0;
+				triangles[triOffset + 1] = z * vSizeX + x + vSizeX + 0;
+				triangles[triOffset + 2] = z * vSizeX + x + vSizeX + 1;
+
+				triangles[triOffset + 3] = z * vSizeX + x + 0;
+				triangles[triOffset + 4] = z * vSizeX + x + vSizeX + 1;
+				triangles[triOffset + 5] = z * vSizeX + x + 1;
+				
 			}
 		}
 
@@ -50,5 +68,6 @@ public class TileMap : MonoBehaviour {
 		MeshCollider mc = GetComponent<MeshCollider>();
 
 		mf.mesh = mesh;
+		mc.sharedMesh = mesh;
 	}
 }
